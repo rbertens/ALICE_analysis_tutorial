@@ -1,4 +1,4 @@
-#if !defined (__CINT__) || defined (__MAKECINT__)
+#if !defined (__CINT__) || defined (__CLING__)
 #include "AliAnalysisAlien.h"
 #include "AliAnalysisManager.h"
 #include "AliAODInputHandler.h"
