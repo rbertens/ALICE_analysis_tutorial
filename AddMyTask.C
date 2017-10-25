@@ -28,6 +28,7 @@ AliAnalysisTaskMyTask* AddMyTask(TString name = "name")
     // now we create an instance of your task
     AliAnalysisTaskMyTask* task = new AliAnalysisTaskMyTask(name.Data());   
     if(!task) return 0x0;
+    task->SelectCollisionCandidates(AliVEvent::kAnyINT);
     // add your task to the manager
     mgr->AddTask(task);
     // your task needs input: here we connect the manager to your task
