@@ -104,7 +104,7 @@ void AliAnalysisTaskMyTask::UserExec(Option_t *)
     Int_t iTracks(fAOD->GetNumberOfTracks());           // see how many tracks there are in the event
     for(Int_t i(0); i < iTracks; i++) {                 // loop ove rall these tracks
         AliAODTrack* track = static_cast<AliAODTrack*>(fAOD->GetTrack(i));         // get a track (type AliAODTrack) from the event
-        if(!track) continue;                            // if we failed, skip this track
+        if(!track || track->TestFilterBit(1)) continue;                            // if we failed, skip this track
         fHistPt->Fill(track->Pt());                     // plot the pt value of the track in a histogram
     }                                                   // continue until all the tracks are processed
     PostData(1, fOutputList);                           // stream the results the analysis of this event to
