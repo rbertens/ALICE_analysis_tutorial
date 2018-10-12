@@ -1,17 +1,7 @@
-
-#if !defined (__CINT__) || defined (__CLING__)
-#include "AliAnalysisManager.h"
-#include "AliAnalysisTaskMyTask.h"
-#include <TString.h>
-#include <TList.h>
-#endif
-
-
-
 AliAnalysisTaskMyTask* AddMyTask(TString name = "name")
 {
     // get the manager via the static access member. since it's static, you don't need
-    // an instance of the class to call the function
+    // to create an instance of the class here to call the function
     AliAnalysisManager *mgr = AliAnalysisManager::GetAnalysisManager();
     if (!mgr) {
         return 0x0;
@@ -39,4 +29,3 @@ AliAnalysisTaskMyTask* AddMyTask(TString name = "name")
     // when you will run your analysis in an analysis train on grid
     return task;
 }
-

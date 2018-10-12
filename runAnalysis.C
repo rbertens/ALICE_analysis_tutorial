@@ -1,9 +1,8 @@
-#if !defined (__CINT__) || defined (__CLING__)
-#include "AliAnalysisAlien.h"
-#include "AliAnalysisManager.h"
-#include "AliAODInputHandler.h"
+// include the header of your analysis task here! for classes already compiled by aliBuild,
+// precompiled header files (with extension pcm) are available, so that you do not need to
+// specify includes for those. for your own task however, you (probably) have not generated a
+// pcm file, so we need to include it explicitly
 #include "AliAnalysisTaskMyTask.h"
-#endif
 
 void runAnalysis()
 {
@@ -50,7 +49,7 @@ void runAnalysis()
         // if you want to run locally, we need to define some input
         TChain* chain = new TChain("aodTree");
         // add a few files to the chain (change this so that your local files are added)
-        chain->Add("AliAOD.root");
+        chain->Add("/home/rbertens/Documents/CERN/data/ALICE_DATA/data/2015/LHC15o/000246757/pass1/AOD/001/AliAOD.root");
         // start the analysis locally, reading the events from the tchain
         mgr->StartAnalysis("local", chain);
     } else {
