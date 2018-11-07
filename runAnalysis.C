@@ -62,16 +62,16 @@ void runAnalysis()
         alienHandler->SetAnalysisSource("AliAnalysisTaskMyTask.cxx");
         // select the aliphysics version. all other packages
         // are LOADED AUTOMATICALLY!
-        alienHandler->SetAliPhysicsVersion("vAN-20160330-2");
+        alienHandler->SetAliPhysicsVersion("vAN-20181028_ROOT6-1");
         // set the Alien API version
         alienHandler->SetAPIVersion("V1.1x");
         // select the input data
-        alienHandler->SetGridDataDir("/alice/data/2011/LHC11h_2");
-        alienHandler->SetDataPattern("*ESDs/pass2/AOD145/*AOD.root");
+        alienHandler->SetGridDataDir("/alice/data/2015/LHC15o");
+        alienHandler->SetDataPattern("*pass1/AOD194/*AOD.root");
         // MC has no prefix, data has prefix 000
         alienHandler->SetRunPrefix("000");
         // runnumber
-        alienHandler->AddRunNumber(167813);
+        alienHandler->AddRunNumber(246994);
         // number of files per subjob
         alienHandler->SetSplitMaxInputFileNumber(40);
         alienHandler->SetExecutable("myTask.sh");
