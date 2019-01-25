@@ -1,15 +1,36 @@
+#include "TROOT.h"
+#include "TSystem.h"
+#if !defined (__CINT__) || defined (__CLING__)
+#include "TInterpreter.h"
+#include "TChain.h"
+#include "AliAnalysisAlien.h"
+#include "AliAnalysisManager.h"
+#include "AliAODInputHandler.h"
 // include the header of your analysis task here! for classes already compiled by aliBuild,
 // precompiled header files (with extension pcm) are available, so that you do not need to
 // specify includes for those. for your own task however, you (probably) have not generated a
 // pcm file, so we need to include it explicitly
 #include "AliAnalysisTaskMyTask.h"
+#endif
 
-void runAnalysis()
+
+// run your analysis in the mode 'mode'
+// if 'mode' is 'grid' the results will be merged via jdl on the grid if gridMerge is true
+// available modes: "grid", "local", "test", "terminate"
+// mode "grid" : self-explained
+// mode "local" : expects an AliAOD.root data file in the current directory
+// mode "test" : your laptop will behave as a grid node running the analysis on data
+//               files downloaded from the grid
+// mode "terminate" : when your analysis is finished on the grid iterate calls with this mode
+//                    until your jobs are merged then make a final call with this mode and
+//                    gridMerge kFALSE to bring home your results
+
+void runAnalysis(const char *mode = "grid", Bool_t gridMerge = kTRUE)
 {
     // set if you want to run the analysis locally (kTRUE), or on grid (kFALSE)
-    Bool_t local = kTRUE;
+    Bool_t local = (TString(mode).EqualTo("local")) ? kTRUE : kFALSE;
     // if you run on grid, specify test mode (kTRUE) or full grid model (kFALSE)
-    Bool_t gridTest = kTRUE;
+    Bool_t gridTest = (TString(mode).EqualTo("test")) ? kTRUE : kFALSE;
     
     // since we will compile a class, tell root where to look for headers  
 #if !defined (__CINT__) || defined (__CLING__)
@@ -62,9 +83,8 @@ void runAnalysis()
         alienHandler->SetAnalysisSource("AliAnalysisTaskMyTask.cxx");
         // select the aliphysics version. all other packages
         // are LOADED AUTOMATICALLY!
-        alienHandler->SetAliPhysicsVersion("vAN-20181028_ROOT6-1");
-        // set the Alien API version
-        alienHandler->SetAPIVersion("V1.1x");
+        alienHandler->SetAliPhysicsVersion("vAN-20190122_ROOT6-1");
+
         // select the input data
         alienHandler->SetGridDataDir("/alice/data/2015/LHC15o");
         alienHandler->SetDataPattern("*pass1/AOD194/*AOD.root");
@@ -85,8 +105,8 @@ void runAnalysis()
         // after re-running the jobs in SetRunMode("terminate") 
         // (see below) mode, set SetMergeViaJDL(kFALSE) 
         // to collect final results
-        alienHandler->SetMaxMergeStages(1);
-        alienHandler->SetMergeViaJDL(kTRUE);
+        alienHandler->SetMaxMergeStages(2);
+        alienHandler->SetMergeViaJDL(gridMerge);
 
         // define the output folders
         alienHandler->SetGridWorkingDir("myWorkingDir");

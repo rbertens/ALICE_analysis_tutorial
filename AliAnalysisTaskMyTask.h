@@ -5,7 +5,9 @@
 #ifndef AliAnalysisTaskMyTask_H
 #define AliAnalysisTaskMyTask_H
 
+#if !defined (__CINT__) || defined (__CLING__)
 #include "AliAnalysisTaskSE.h"
+#endif
 
 class AliAnalysisTaskMyTask : public AliAnalysisTaskSE  
 {

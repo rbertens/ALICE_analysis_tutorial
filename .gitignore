@@ -5,3 +5,15 @@
 *.root
 *.xml
 *.pcm
+*.sh
+*.jdl
+
+.cproject
+.project
+
+
+myAnalysis.C
+myTask_merge.C
+outputs_valid
+stderr
+
