@@ -1,3 +1,6 @@
+#include "AliAnalysisManager.h"
+#include "AliAnalysisTaskMyTask.h"
+
 AliAnalysisTaskMyTask* AddMyTask(TString name = "name")
 {
     // get the manager via the static access member. since it's static, you don't need
