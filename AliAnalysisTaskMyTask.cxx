@@ -23,6 +23,7 @@
 #include "TH1F.h"
 #include "TList.h"
 #include "AliAnalysisTask.h"
+#include "AliAnalysisTaskSE.h"
 #include "AliAnalysisManager.h"
 #include "AliAODEvent.h"
 #include "AliAODInputHandler.h"

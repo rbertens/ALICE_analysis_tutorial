@@ -1,14 +1,18 @@
+#include "TROOT.h"
+#include "TSystem.h"
+#if !defined (__CINT__) || defined (__CLING__)
 #include "TInterpreter.h"
 #include "TChain.h"
 #include "AliAnalysisAlien.h"
 #include "AliAnalysisManager.h"
 #include "AliAODInputHandler.h"
-
 // include the header of your analysis task here! for classes already compiled by aliBuild,
 // precompiled header files (with extension pcm) are available, so that you do not need to
 // specify includes for those. for your own task however, you (probably) have not generated a
 // pcm file, so we need to include it explicitly
 #include "AliAnalysisTaskMyTask.h"
+#endif
+
 
 // run your analysis in the mode 'mode'
 // if 'mode' is 'grid' the results will be merged via jdl on the grid if gridMerge is true

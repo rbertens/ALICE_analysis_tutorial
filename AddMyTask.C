@@ -1,5 +1,7 @@
+#if !defined (__CINT__) || defined (__CLING__)
 #include "AliAnalysisManager.h"
 #include "AliAnalysisTaskMyTask.h"
+#endif
 
 AliAnalysisTaskMyTask* AddMyTask(TString name = "name")
 {
